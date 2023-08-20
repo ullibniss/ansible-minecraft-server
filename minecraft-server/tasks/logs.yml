@@ -1,0 +1,5 @@
+---
+- name: Get logs for minecraft server
+  command: docker-compose logs
+  args:
+    chdir: "{{ minecraft_server_deploy_dir }}"

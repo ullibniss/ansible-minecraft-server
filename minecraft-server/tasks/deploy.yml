@@ -1,0 +1,28 @@
+---
+- name: Create directories for minecraft server
+  file:
+    path: "{{ minecraft_server_deploy_dir }}"
+    state: directory
+    owner: "{{ default_user }}"
+    group: "{{ default_user }}"
+    mode: 0755
+  become: true
+
+- name: Create mods dir for minecraft server
+  file:
+    path: "{{ minecraft_server_mods_dir }}"
+    state: directory
+    owner: "{{ default_user }}"
+    group: "{{ default_user }}"
+    mode: 0755
+  when: minecraft_server_mods_enabled == true
+  become: true
+
+- name: Render docker-compose file
+  template:
+    src: "docker-compose.yml"
+    dest: "{{ minecraft_server_deploy_dir }}/docker-compose.yml"
+    owner: "{{ default_user }}"
+    group: "{{ default_user }}"
+    mode: 0644
+  become: true

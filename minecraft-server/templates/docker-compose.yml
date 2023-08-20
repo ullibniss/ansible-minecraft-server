@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mc:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+{% if minecraft_server_mods_enabled %}
+      TYPE: "FORGE"
+{% endif %}
+      VERSION: {{ minecraft_version }}
+{% if minecraft_server_world_download_enabled %}
+      WORLD: {{ minecraft_server_world_url }}
+{% endif %}
+    volumes:
+{% if minecraft_server_mods_enabled %}
+      - {{ minecraft_server_mods_dir }}:/mods
+{% endif %}
+      - {{ minecraft_server_data_dir }}:/data

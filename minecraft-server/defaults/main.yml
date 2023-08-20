@@ -1,0 +1,12 @@
+minecraft_server_deploy_dir: /opt/minecraft_server
+minecraft_server_data_dir: "{{ minecraft_server_deploy_dir }}/data"
+
+minecraft_server_mods_enabled: false
+minecraft_server_mods_dir: "{{ minecraft_server_deploy_dir }}/mods"
+
+minecraft_server_world_download_enabled: true
+minecraft_server_world_url: "https://www.minecraftmaps.com/horror-maps/horror-house/download-map"
+
+minecraft_version: 1.19.4
+
+default_user: "{{ lookup('env', 'USER') }}"
